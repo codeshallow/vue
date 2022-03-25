@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <el-button type="danger">{{ msg }}</el-button>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -10,9 +11,14 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'Home',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      msg: "hello 青哥哥"
+    }
   }
 }
 </script>
