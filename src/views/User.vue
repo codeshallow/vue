@@ -21,11 +21,10 @@
       >
         <el-button type="danger" slot="reference">批量删除 <i class="el-icon-remove-outline"></i></el-button>
       </el-popconfirm>
-      <el-upload action="http://localhost:9091/user/import" :show-file-list="false" accept="xlsx" :on-success="handleExcelImportSuccess" style="display: inline-block">
-  <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
-</el-upload>
+      <el-upload action="http://localhost:9090/user/import" :show-file-list="false" accept="xlsx" :on-success="handleExcelImportSuccess" style="display: inline-block">
+        <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
+      </el-upload>
       <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i></el-button>
-
     </div>
 
     <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
@@ -122,16 +121,15 @@ export default {
           address: this.address,
         }
       }).then(res => {
-        console.log(res)
 
-        this.tableData = res.records
-        this.total = res.total
+        this.tableData = res.data.records
+        this.total = res.data.total
 
       })
     },
     save() {
       this.request.post("/user", this.form).then(res => {
-        if (res) {
+        if (res.data) {
           this.$message.success("保存成功")
           this.dialogFormVisible = false
           this.load()
@@ -150,7 +148,7 @@ export default {
     },
     del(id) {
       this.request.delete("/user/" + id).then(res => {
-        if (res) {
+        if (res.data) {
           this.$message.success("删除成功")
           this.load()
         } else {
@@ -165,7 +163,7 @@ export default {
     delBatch() {
       let ids = this.multipleSelection.map(v => v.id)  // [{}, {}, {}] => [1,2,3]
       this.request.post("/user/del/batch", ids).then(res => {
-        if (res) {
+        if (res.data) {
           this.$message.success("批量删除成功")
           this.load()
         } else {
@@ -190,12 +188,12 @@ export default {
       this.load()
     },
     exp() {
-	window.open("http://localhost:9091/user/export")
-},
-handleExcelImportSuccess() {
-    this.$message.success("导入成功")
-    this.load()
-}
+      window.open("http://localhost:9090/user/export")
+    },
+    handleExcelImportSuccess() {
+      this.$message.success("导入成功")
+      this.load()
+    }
   }
 }
 </script>

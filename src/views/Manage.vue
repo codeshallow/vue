@@ -7,7 +7,7 @@
 
     <el-container>
       <el-header style="border-bottom: 1px solid #ccc;">
-        <Header :collapseBtnClass="collapseBtnClass" :collapse="isCollapse" />
+        <Header :collapseBtnClass="collapseBtnClass" @asideCollapse="collapse" />
       </el-header>
 
       <el-main>
@@ -54,3 +54,4 @@ export default {
   }
 }
 </script>
+
