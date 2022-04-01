@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-openeds="['1', '3']" style="min-height: 100%; overflow-x: hidden"
+  <el-menu :default-openeds="['2']" style="min-height: 100%; overflow-x: hidden"
            background-color="rgb(48, 65, 86)"
            text-color="#fff"
            active-text-color="#ffd04b"
@@ -24,6 +24,10 @@
         <i class="el-icon-s-custom"></i>
         <span slot="title">用户管理</span>
       </el-menu-item>
+      <el-menu-item index="/file">
+        <i class="el-icon-document"></i>
+        <span slot="title">文件管理</span>
+      </el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
@@ -38,6 +42,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.el-menu-item.is-active {
+  background-color: rgb(38, 52, 69) !important;
+}
+.el-menu-item:hover {
+  background-color: rgb(38, 52, 69) !important;
+}
 
+.el-submenu__title:hover {
+  background-color: rgb(38, 52, 69) !important;
+}
 </style>
